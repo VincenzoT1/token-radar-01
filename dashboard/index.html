@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniRadar Pro: Institutional Token Launch Radar</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app-layout">
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo-mark">TR</div>
+      <div>
+        <h1 class="brand-title">OmniRadar Pro</h1>
+        <p class="brand-sub">Institutional Token Launch Radar &amp; Farming Alpha Engine</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-pulse">● Snapshot Active</span>
+      <span class="badge" id="hdr-as-of">As of: --</span>
+      <span class="badge badge-accent" id="hdr-model-ver">Radar-Pro v2.2</span>
+    </div>
+  </header>
+
+  <section class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Pipeline Protocols</div>
+      <div class="metric-val" id="metric-protocols">--</div>
+      <div class="metric-sub">Covering 100% of DefiLlama Watchlist</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total Implied Valuation</div>
+      <div class="metric-val text-accent" id="metric-total-implied">--</div>
+      <div class="metric-sub">Dynamic peer-calibrated pipeline</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Average P/TVL Multiple</div>
+      <div class="metric-val" id="metric-avg-mult">--</div>
+      <div class="metric-sub">Derived from empirical DeFi peers</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Watchlist TVL Floor</div>
+      <div class="metric-val" id="metric-floor">$50M</div>
+      <div class="metric-sub">Including early radar gems below floor</div>
+    </div>
+  </section>
+
+  <nav class="tabs-nav">
+    <button class="tab-btn active" data-tab="radar">⚡ Pre-Token Radar (<span id="count-pre">--</span>)</button>
+    <button class="tab-btn" data-tab="live">🏛️ Live Market Benchmarks (<span id="count-live">--</span>)</button>
+    <button class="tab-btn" data-tab="methodology">📐 Valuation Methodology</button>
+  </nav>
+
+  <section class="controls-bar" id="radar-controls">
+    <div class="search-box">
+      <input type="text" id="input-search" placeholder="Search protocol, slug, or blockchain..." autocomplete="off">
+    </div>
+    <div class="filter-group">
+      <label for="sel-category">Sector:</label>
+      <select id="sel-category">
+        <option value="all">All Sectors</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="sel-chain">Chain:</label>
+      <select id="sel-chain">
+        <option value="all">All Chains</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="sel-momentum">Momentum:</label>
+      <select id="sel-momentum">
+        <option value="all">All Momentum</option>
+        <option value="surge">Surging (&gt; +10%)</option>
+        <option value="positive">Positive (0% to +10%)</option>
+        <option value="negative">Cooling (&lt; 0%)</option>
+      </select>
+    </div>
+    <button class="btn-reset" id="btn-reset">Reset</button>
+  </section>
+
+  <main class="content-container">
+    <div class="tab-pane active" id="pane-radar">
+      <div class="table-card">
+        <table class="data-table" id="table-radar">
+          <thead>
+            <tr>
+              <th data-sort="rank" class="sortable sorted-asc">Rank</th>
+              <th data-sort="name" class="sortable">Protocol</th>
+              <th data-sort="category" class="sortable">Sector</th>
+              <th>Primary Chains</th>
+              <th data-sort="tvl" class="sortable text-right">TVL (USD)</th>
+              <th data-sort="change" class="sortable text-right">7d Momentum</th>
+              <th data-sort="implied" class="sortable text-right">Implied Valuation</th>
+              <th class="text-right">Multipliers</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-radar"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="pane-live">
+      <div class="table-card">
+        <table class="data-table" id="table-live">
+          <thead>
+            <tr>
+              <th>Protocol</th>
+              <th>Sector</th>
+              <th>Chains</th>
+              <th class="text-right">TVL (USD)</th>
+              <th class="text-right">Market Cap (USD)</th>
+              <th class="text-right">Real Mcap/TVL</th>
+              <th class="text-right">7d Change</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-live"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="pane-methodology">
+      <div class="methodology-card">
+        <h2>Quantitative Valuation &amp; Farming Methodology</h2>
+        <p>OmniRadar Pro derives pre-token implied valuations directly from verifiable DefiLlama protocol statistics, benchmarked against live market multiples.</p>
+        <div class="formula-box">
+          <code>Implied Valuation = TVL &times; Category Multiple &times; Ecosystem Multiplier &times; Momentum Factor &times; Maturity Factor</code>
+        </div>
+        <div class="method-grid">
+          <div class="method-col">
+            <h3>1. Sector Multiples (P/TVL)</h3>
+            <ul>
+              <li><strong>Derivatives / Perps:</strong> 0.38x (High volume velocity &amp; protocol take rate)</li>
+              <li><strong>DEXs / AMMs:</strong> 0.35x (Consistent trading fees &amp; token governance)</li>
+              <li><strong>Bridges / Messaging:</strong> 0.40x (Critical cross-chain infrastructure)</li>
+              <li><strong>RWA Protocols:</strong> 0.28x (Institutional credit &amp; treasury yields)</li>
+              <li><strong>Yield Allocators:</strong> 0.22x (Automated vault management fees)</li>
+              <li><strong>Lending / CDPs:</strong> 0.16x (High baseline TVL with lower net take rates)</li>
+              <li><strong>Liquid Staking:</strong> 0.08x (Massive capital base, fee-split economics)</li>
+            </ul>
+          </div>
+          <div class="method-col">
+            <h3>2. Ecosystem &amp; Velocity Weights</h3>
+            <ul>
+              <li><strong>Solana Ecosystem:</strong> 1.15x (Exceptional velocity, high retail token premiums)</li>
+              <li><strong>Multi-Chain (&ge; 3 chains):</strong> 1.12x (Diversified liquidity moat)</li>
+              <li><strong>Ethereum L1:</strong> 1.10x (Institutional liquidity anchor)</li>
+              <li><strong>Leading L2s (Base, Arbitrum):</strong> 1.05x (High transaction frequency)</li>
+              <li><strong>Niche Single Chain:</strong> 0.96x (Liquidity fragmentation discount)</li>
+            </ul>
+          </div>
+          <div class="method-col">
+            <h3>3. Dynamic Momentum &amp; Age</h3>
+            <ul>
+              <li><strong>7d Growth:</strong> Clamped between -60% and +150%, weighted at 0.45</li>
+              <li><strong>Maturity Factor:</strong> 0.65 baseline + up to 0.35 linearly scaled over 3 years (1,095 days)</li>
+              <li><strong>Deterministic Rigor:</strong> Zero unseeded randomness; reproducible across sandboxes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="drawer" id="protocol-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div>
+        <h2 id="drawer-name" class="drawer-title">Protocol Details</h2>
+        <span id="drawer-category" class="pill">Sector</span>
+      </div>
+      <button class="drawer-close" id="drawer-close" aria-label="Close drawer">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <section class="drawer-section">
+        <h3>Valuation Decomposition</h3>
+        <div class="decomp-grid">
+          <div class="decomp-item">
+            <span class="decomp-label">Reported TVL</span>
+            <span class="decomp-val" id="drawer-tvl">--</span>
+          </div>
+          <div class="decomp-item">
+            <span class="decomp-label">Implied Valuation</span>
+            <span class="decomp-val text-accent" id="drawer-implied">--</span>
+          </div>
+          <div class="decomp-item">
+            <span class="decomp-label">Sector Multiple</span>
+            <span class="decomp-val" id="drawer-cat-mult">--</span>
+          </div>
+          <div class="decomp-item">
+            <span class="decomp-label">Ecosystem Weight</span>
+            <span class="decomp-val" id="drawer-chain-mult">--</span>
+          </div>
+          <div class="decomp-item">
+            <span class="decomp-label">7d Momentum Mult</span>
+            <span class="decomp-val" id="drawer-growth-mult">--</span>
+          </div>
+          <div class="decomp-item">
+            <span class="decomp-label">Maturity Factor</span>
+            <span class="decomp-val" id="drawer-maturity-mult">--</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="drawer-section">
+        <h3>Actionable Farming Playbook (6-Step Plan)</h3>
+        <p class="drawer-hint">Concrete execution steps with chain-aware gas budgets and Sybil mitigation.</p>
+        <ol class="farm-steps-list" id="drawer-steps"></ol>
+      </section>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+</div>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
